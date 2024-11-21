@@ -1,0 +1,88 @@
+{
+  "name": "plagin",
+  "displayName": "time_of_work",
+  "description": "this extension welcomes you when you connect, switches the theme depending on the time and shows how much time you spent in the project, and when the project is closed, it displays a gif and goodbye",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:extension.startTimeTracking",
+    "onCommand:extension.stopTimeTracking"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.startTimeTracking",
+        "title": "Start Time Tracking"
+      },
+      {
+        "command": "extension.stopTimeTracking",
+        "title": "Stop Time Tracking"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Extension Settings",
+      "properties": {
+        "morningTheme": {
+          "type": "string",
+          "default": "Default Light+",
+          "description": "Theme for morning."
+        },
+        "dayTheme": {
+          "type": "string",
+          "default": "Visual Studio Light",
+          "description": "Theme for daytime."
+        },
+        "eveningTheme": {
+          "type": "string",
+          "default": "Default Dark+",
+          "description": "Theme for evening."
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "extension.startTimeTracking",
+        "key": "ctrl+n",
+        "mac": "cmd+n",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "extension.stopTimeTracking",
+        "key": "ctrl+m",
+        "mac": "cmd+m",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.95.0",
+    "@types/mocha": "^10.0.9",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^8.10.0",
+    "@typescript-eslint/parser": "^8.7.0",
+    "eslint": "^9.13.0",
+    "typescript": "^5.6.3",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1"
+  },
+  "files": [
+    "out",
+    "media"
+  ]
+}
